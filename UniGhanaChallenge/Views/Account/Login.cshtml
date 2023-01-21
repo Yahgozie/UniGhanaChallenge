@@ -1,0 +1,78 @@
+﻿@*@model Login
+    <h1 class="text-info">Login</h1>
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-controller="Account" asp-action="Login" method="post" role="form">
+                <h4>Use your local account to login</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="col-md-2"></label>
+                    <div class="col-md-12">
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password" class="col-md-2"></label>
+                    <div class="col-md-12">
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="custom-checkbox">
+                            <label asp-for="RememberMe">
+                                <input asp-for="RememberMe" />
+                                @Html.DisplayNameFor(m => m.RememberMe)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-success form-control">Login</button>
+                    </div>
+                </div>
+                <p>
+                    <a asp-action="Register">Register as a new user?</a>
+                </p>
+                <p>
+                    <a asp-action="ForgetPassword">Forgot your password?</a>
+                </p>
+            </form>
+
+        </div>
+    </div>
+
+
+
+    @section Scripts{
+        @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    }*@
+
+
+
+@model Login
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div id="logreg-forms">    
+    <form asp-controller="Account" asp-action="Login" method="post" role="form">        
+        <input asp-for="Email" placeholder="Email..." type="text" class="mb-1 form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+        <input asp-for="Password" placeholder="Password..." type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+        <button type="submit" class="btn btn-secondary form-control"><i class="fas fa-sign-in-alt"></i>Sign in</button>
+
+        <a class="btn btn-primary text-white form-control mt-2" asp-action="Register"><i class="fas fa-user-plus"></i> Register as a new user</a>
+
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
